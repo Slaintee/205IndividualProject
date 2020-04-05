@@ -5,11 +5,14 @@ class Patient:
         self.symptom = symptom
 
     def to_string(self):
-        s1 = '"' + self.name + '" ' + self.p_id + ' ' + self.symptom
+        s1 = self.name + ' with id ' + self.p_id + ' who has ' + self.symptom
         return s1
 
     def get_name(self):
         return self.name
+
+    def get_p_id(self):
+        return self.p_id
 
     def __eq__(self, other):
         return self.name == other.name and self.p_id == other.p_id

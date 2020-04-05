@@ -35,29 +35,29 @@ class Hospital:
 
     def find_patient(self, name):
         patients = []
-        for n in self.patients:
-            if n.get_name() == name:
-                patients.append(n)
+        for p in self.patients:
+            if p.get_name() == name:
+                patients.append(p)
         return patients
 
-    def do_treatment(self, d, n):
-        if not self.is_in_treatment(n):
-            t = treatment.Treatment(d, n)
+    def do_treatment(self, d, p):
+        if not self.is_in_treatment(p):
+            t = treatment.Treatment(d, p)
             self.treatments.add(t)
-            d.do_treatment(n)
+            d.do_treatment(p)
             return t
         else:
             return None
 
-    def is_in_treatment(self, n):
+    def is_in_treatment(self, p):
         for t in self.treatments:
-            if t.get_patient() == n:
+            if t.get_patient() == p:
                 return True
         return False
 
     def show_treatments(self):
         for t in self.treatments:
-            s = t.get_doctor().to_string() + ' => ' + t.get_patient().to_string()
+            s = t.get_patient().to_string() + ' to ' + t.get_doctor().to_string()
             print(s)
 
     def get_treatments(self, d):
@@ -67,9 +67,9 @@ class Hospital:
                 treatment_list.append(t.get_patient())
         return treatment_list
 
-    def recover(self, d, n):
+    def recover(self, d, p):
         for t in self.treatments:
-            if t.get_doctor() == d and t.get_patient() == n:
+            if t.get_doctor() == d and t.get_patient() == p:
                 self.treatments.remove(t)
                 return True
         return False
