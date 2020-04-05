@@ -11,8 +11,8 @@ class Hospital:
         return cls.s_hospital
 
     def __init__(self):
-        self.patient = set()
-        self.doctor = set()
+        self.patients = set()
+        self.doctors = set()
         self.treatments = set()
 
     def add_doctor(self, doctor):
@@ -27,9 +27,9 @@ class Hospital:
     def get_patients(self):
         return self.patients
 
-    def find_doctor(self, title):
+    def find_doctor(self, d_id):
         for d in self.doctors:
-            if d.get_title() == title:
+            if d.get_d_id() == d_id:
                 return d
         return None
 

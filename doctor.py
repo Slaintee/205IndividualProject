@@ -1,28 +1,26 @@
 class Doctor:
-    next_title = ""
 
-    def __init__(self, name):
+    def __init__(self, name, d_id):
         self.name = name
-        # Doctor.next_title = Doctor.next_title
-        self.title = Doctor.next_title
-        self.treatment = set()
+        self.d_id = d_id
+        self.treatments = set()
 
     def to_string(self):
-        s1 = self.name + ' title=' + self.title + '; #treatment(s) = ' + \
-            str(len(self.treatment))
+        s1 = self.name + ' doctor id =' + self.d_id + '; #treatment(s) = ' + \
+            str(len(self.treatments))
         return s1
 
-    def get_card_number(self):
-        return self.title
+    def get_d_id(self):
+        return self.d_id
 
     def __eq__(self, other):
-        return self.title == other.title
+        return self.name == other.name and self.d_id == other.d_id
 
     def __hash__(self):
-        return hash((self.name, self.title))
+        return hash((self.name, self.d_id))
 
-    def do_checkout(self, patient):
-        self.treatment.add(patient)
+    def do_treatment(self, patient):
+        self.treatments.add(patient)
 
-    def get_checkouts(self):
-        return list(self.treatment)
+    def get_treatments(self):
+        return list(self.treatments)
