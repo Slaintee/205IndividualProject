@@ -6,9 +6,8 @@ class Doctor:
         self.treatments = set()
 
     def to_string(self):
-        s1 = self.name + "'s doctor id is " + self.d_id + ', treatment(s) number is(are) ' + \
-            str(len(self.treatments))
-        return s1
+        s = self.name + "'s doctor id is " + self.d_id + ', treatment(s) number is(are) ' + str(len(self.treatments))
+        return s
 
     def get_name(self):
         return self.name
