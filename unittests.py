@@ -63,6 +63,27 @@ class TestTreatment(unittest.TestCase):
         if len(patients) == 1:
             self.assertEqual(patients[0], self.patient1)
 
+    def test_treatment_two(self):
+        # Assign a different patient to Dr. Strange
+        t = self.hospital.do_treatment(self.strange, self.patient2)
+        self.assertIsNotNone(t)
+
+        # check that the hospital has two patient assigned to Dr. Strange
+        patients = self.hospital.get_treatments(self.strange)
+        self.assertEqual(len(patients), 2)
+
+        # check that the patient assigned to Dr. Strange is patient2
+        if len(patients) == 1:
+            self.assertEqual(patients[0], self.patient2)
+
+        # check that Dr. Strange has two patient
+        patients = self.strange.get_treatments()
+        self.assertEqual(len(patients), 2)
+
+        # check that the patient assigned to Dr. Strange is patient2
+        if len(patients) == 1:
+            self.assertEqual(patients[0], self.patient2)
+
     def test_recover(self):
         # return Dr. Strange's patient--should return False
         r = self.hospital.recover(self.strange, self.patient1)
@@ -75,8 +96,6 @@ class TestTreatment(unittest.TestCase):
         # check that the hospital shows that Dr. Strange has no patients
         patients = self.hospital.get_treatments(self.strange)
         self.assertEqual(len(patients), 0)
-
-
 
 
 if __name__ == "__main__":
